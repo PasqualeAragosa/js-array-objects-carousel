@@ -15,8 +15,6 @@ Aggiungere funzionalità di autoplay: dopo un certo periodo di tempo (3 secondi)
 
 BONUS 3  (opzionale):
 Aggiungere bottoni di start/stop e di inversione del meccanismo di autoplay.
-STRUTTURA DATI:
-Ecco la struttura dati da usare (le immagini sono le stesse della volta scorsa)
 */
 
 const images = [
@@ -44,7 +42,7 @@ const images = [
 ];
 
 const detailsEl = document.querySelector('.details');
-const containerEl = document.querySelector('.my_container');
+const slidesEl = document.querySelector('.slides');
 const thumbsEl = document.querySelector('.thumbs');
 const nextEl = document.querySelector('.next');
 const prevEl = document.querySelector('.prev');
@@ -70,7 +68,7 @@ for (let i = 0; i < sizeImages; i++) {
 
 for (let i = 0; i < sizeImages; i++) {
     const imgMarkup = `<img class="image ${i === current ? 'active' : ''}" src="./assets/${slides[i]}">`;
-    containerEl.insertAdjacentHTML('beforeend', imgMarkup);
+    slidesEl.insertAdjacentHTML('beforeend', imgMarkup);
 }
 
 for (let i = 0; i < sizeImages; i++) {
@@ -78,7 +76,7 @@ for (let i = 0; i < sizeImages; i++) {
     thumbsEl.insertAdjacentHTML('beforeend', thumbsMarkup);
 }
 
-nextEl.addEventListener('click', function () {
+const clock = setInterval(function () {
     const allSlides = document.querySelectorAll('.image');
     const allThumbs = document.querySelectorAll('.thumbs_slide');
     const allTexts = document.querySelectorAll('.text');
@@ -104,7 +102,7 @@ nextEl.addEventListener('click', function () {
         allTexts[current].classList.add('turn_on');
         allTitles[current].classList.add('is_on');
     }
-});
+}, 3000);
 
 prevEl.addEventListener('click', function () {
     const allSlides = document.querySelectorAll('.image');

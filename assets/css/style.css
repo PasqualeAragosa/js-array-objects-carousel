@@ -31,7 +31,7 @@ i {
     display: none;
 }
 
-.my_container {
+.slides {
     position: relative;
 }
 
@@ -72,6 +72,7 @@ i {
     position: absolute;
     height: 100%;
     left: 50%;
+    translate: -50%;
 }
 
 .next {
