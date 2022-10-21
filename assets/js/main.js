@@ -5,14 +5,10 @@ Creare un carosello come nella foto allegata.
 MILESTONE 0:
 
 MILESTONE 1:
-Ora rimuoviamo i contenuti statici e usiamo l’array di oggetti letterali per popolare dinamicamente il carosello.
-Al click dell'utente sulle frecce verso sinistra o destra, l'immagine attiva diventerà visibile e dovremo aggiungervi titolo e testo.
 
 MILESTONE 2:
-Aggiungere il ciclo infinito del carosello. Ovvero se la miniatura attiva è la prima e l'utente clicca la freccia verso destra, la miniatura che deve attivarsi sarà l'ultima e viceversa per l'ultima miniatura se l'utente clicca la freccia verso sinistra.
 
 BONUS 1 (opzionale):
-Aggiungere le thumbnails (sottoforma di miniatura) ed al click attivare l’immagine corrispondente.
 
 BONUS 2  (opzionale):
 Aggiungere funzionalità di autoplay: dopo un certo periodo di tempo (3 secondi) l’immagine attiva dovrà cambiare alla successiva.
@@ -48,52 +44,59 @@ const images = [
 ];
 
 const containerEl = document.querySelector('.my_container');
+const thumbsEl = document.querySelector('.thumbs');
 const nextEl = document.querySelector('.next');
 const prevEl = document.querySelector('.prev');
 const sizeImages = images.length;
 let slides = [];
 let current = 0;
-//console.log(sizeImages);
 
 images.forEach(slide => slides.push(slide.image));
-// let slides = [];
-// for (let i = 0; i < images.length; i++) {
-//     slides.push(images[i].image);
-// }
-//console.log(slides);
 
 for (let i = 0; i < sizeImages; i++) {
     const imgMarkup = `<img class="image ${i === current ? 'active' : ''}" src="./assets/${slides[i]}">`;
     containerEl.insertAdjacentHTML('beforeend', imgMarkup);
 }
 
+for (let i = 0; i < sizeImages; i++) {
+    const thumbsMarkup = `<img class="thumbs_slide ${i === current ? 'apparent' : ''}" src="./assets/${slides[i]}">`;
+    thumbsEl.insertAdjacentHTML('beforeend', thumbsMarkup);
+}
+
 nextEl.addEventListener('click', function () {
     const allSlides = document.querySelectorAll('.image');
-    //console.log(allSlides);
+    const allThumbs = document.querySelectorAll('.thumbs_slide');
     const activeSlide = document.querySelector('.active');
+    const apparentThumb = document.querySelector('.apparent');
     activeSlide.classList.remove('active');
+    apparentThumb.classList.remove('apparent');
     current++;
     if (current === 5) {
         current = 0;
         allSlides[current].classList.add('active');
+        allThumbs[current].classList.add('apparent');
     } else {
         allSlides[current].classList.add('active');
+        allThumbs[current].classList.add('apparent');
     }
-    //console.log(activeSlide);
 });
 
 prevEl.addEventListener('click', function () {
     const allSlides = document.querySelectorAll('.image');
-    //console.log(allSlides);
+    const allThumbs = document.querySelectorAll('.thumbs_slide');
     const activeSlide = document.querySelector('.active');
+    const apparentThumb = document.querySelector('.apparent');
     activeSlide.classList.remove('active');
+    apparentThumb.classList.remove('apparent');
     current--;
     if (current === -1) {
         current = 4;
         allSlides[current].classList.add('active');
+        allThumbs[current].classList.add('apparent');
     } else {
         allSlides[current].classList.add('active');
+        allThumbs[current].classList.add('apparent');
     }
-    //console.log(activeSlide);
 });
+
 
