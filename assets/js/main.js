@@ -43,15 +43,30 @@ const images = [
     }
 ];
 
+const detailsEl = document.querySelector('.details');
 const containerEl = document.querySelector('.my_container');
 const thumbsEl = document.querySelector('.thumbs');
 const nextEl = document.querySelector('.next');
 const prevEl = document.querySelector('.prev');
 const sizeImages = images.length;
 let slides = [];
+let titles = [];
+let texts = [];
 let current = 0;
 
 images.forEach(slide => slides.push(slide.image));
+images.forEach(lyric => texts.push(lyric.text));
+images.forEach(headline => titles.push(headline.title))
+
+for (let i = 0; i < sizeImages; i++) {
+    const titleMarkup = `<p class="title ${i === current ? 'is_on' : ''}">${titles[i]}</p>`;
+    detailsEl.insertAdjacentHTML('beforeend', titleMarkup);
+}
+
+for (let i = 0; i < sizeImages; i++) {
+    const textMarkup = `<p class="text ${i === current ? 'turn_on' : ''}">${texts[i]}</p>`;
+    detailsEl.insertAdjacentHTML('beforeend', textMarkup);
+}
 
 for (let i = 0; i < sizeImages; i++) {
     const imgMarkup = `<img class="image ${i === current ? 'active' : ''}" src="./assets/${slides[i]}">`;
@@ -66,36 +81,56 @@ for (let i = 0; i < sizeImages; i++) {
 nextEl.addEventListener('click', function () {
     const allSlides = document.querySelectorAll('.image');
     const allThumbs = document.querySelectorAll('.thumbs_slide');
+    const allTexts = document.querySelectorAll('.text');
+    const allTitles = document.querySelectorAll('.title');
     const activeSlide = document.querySelector('.active');
     const apparentThumb = document.querySelector('.apparent');
+    const isOnText = document.querySelector('.turn_on');
+    const isOnTitle = document.querySelector('.is_on');
     activeSlide.classList.remove('active');
     apparentThumb.classList.remove('apparent');
+    isOnText.classList.remove('turn_on');
+    isOnTitle.classList.remove('is_on');
     current++;
     if (current === 5) {
         current = 0;
         allSlides[current].classList.add('active');
         allThumbs[current].classList.add('apparent');
+        allTexts[current].classList.add('turn_on');
+        allTitles[current].classList.add('is_on');
     } else {
         allSlides[current].classList.add('active');
         allThumbs[current].classList.add('apparent');
+        allTexts[current].classList.add('turn_on');
+        allTitles[current].classList.add('is_on');
     }
 });
 
 prevEl.addEventListener('click', function () {
     const allSlides = document.querySelectorAll('.image');
     const allThumbs = document.querySelectorAll('.thumbs_slide');
+    const allTexts = document.querySelectorAll('.text');
+    const allTitles = document.querySelectorAll('.title');
     const activeSlide = document.querySelector('.active');
     const apparentThumb = document.querySelector('.apparent');
+    const isOnText = document.querySelector('.turn_on');
+    const isOnTitle = document.querySelector('.is_on');
     activeSlide.classList.remove('active');
     apparentThumb.classList.remove('apparent');
+    isOnText.classList.remove('turn_on');
+    isOnTitle.classList.remove('is_on');
     current--;
     if (current === -1) {
         current = 4;
         allSlides[current].classList.add('active');
         allThumbs[current].classList.add('apparent');
+        allTexts[current].classList.add('turn_on');
+        allTitles[current].classList.add('is_on');
     } else {
         allSlides[current].classList.add('active');
         allThumbs[current].classList.add('apparent');
+        allTexts[current].classList.add('turn_on');
+        allTitles[current].classList.add('is_on');
     }
 });
 
