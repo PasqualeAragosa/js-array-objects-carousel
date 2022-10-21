@@ -48,6 +48,8 @@ const images = [
 ];
 
 const containerEl = document.querySelector('.my_container');
+const nextEl = document.querySelector('.next');
+const prevEl = document.querySelector('.prev');
 const sizeImages = images.length;
 let slides = [];
 let current = 0;
@@ -65,4 +67,33 @@ for (let i = 0; i < sizeImages; i++) {
     containerEl.insertAdjacentHTML('beforeend', imgMarkup);
 }
 
+nextEl.addEventListener('click', function () {
+    const allSlides = document.querySelectorAll('.image');
+    //console.log(allSlides);
+    const activeSlide = document.querySelector('.active');
+    activeSlide.classList.remove('active');
+    current++;
+    if (current === 5) {
+        current = 0;
+        allSlides[current].classList.add('active');
+    } else {
+        allSlides[current].classList.add('active');
+    }
+    //console.log(activeSlide);
+});
+
+prevEl.addEventListener('click', function () {
+    const allSlides = document.querySelectorAll('.image');
+    //console.log(allSlides);
+    const activeSlide = document.querySelector('.active');
+    activeSlide.classList.remove('active');
+    current--;
+    if (current === -1) {
+        current = 4;
+        allSlides[current].classList.add('active');
+    } else {
+        allSlides[current].classList.add('active');
+    }
+    //console.log(activeSlide);
+});
 
