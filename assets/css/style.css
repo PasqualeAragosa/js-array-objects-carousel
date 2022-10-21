@@ -1,0 +1,62 @@
+/* #region Common */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+img {
+    max-width: 100%;
+}
+
+i {
+    font-size: 3rem;
+    color: white;
+}
+/* #endregion Common */
+
+/* #region Header */
+
+/* #endregion Header */
+
+/* #region Main */
+.my_container {
+    position: relative;
+}
+
+.image {
+    width: 1000px;
+    height: 700px;
+    object-fit: cover;
+    display: none;
+}
+
+.active {
+    display: inline-block;
+}
+
+.controls {
+    position: absolute;
+    height: 100%;
+    left: 50%;
+}
+
+.next {
+    position: relative;
+    top: 5%;
+}
+
+.prev {
+    position: relative;
+    top: 80%;
+}
+
+.next i:hover,
+.prev i:hover {
+    color: rgb(180, 172, 172);
+}
+/* #endregion Main */
+
+/* #region Footer */
+
+/* #endregion Footer */
